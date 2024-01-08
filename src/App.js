@@ -1,8 +1,6 @@
-import AreaChartGraph from "./components/AreaChartGraph";
-import StockChart from "./components/StockChart";
-import Charts from "./components/Charts.js";
-import Table from "./components/Table.js";
 import { useState } from "react";
+import Comparison from "./components/Comparison";
+import EmptyScreen from "./components/EmptyScreen";
 import {
   Box,
   OutlinedInput,
@@ -19,15 +17,20 @@ import {
 
 function App() {
   const [selectedStocks, setSelectedStocks] = useState([]);
+  const [indexToCompare, setIndexToCompare] = useState(null);
 
   const handleStockInput = (e, newValue) => {
     setSelectedStocks(newValue);
-    console.log(selectedStocks);
+  };
+  console.log(selectedStocks);
+
+  const handleIndexChange = (e, newValue) => {
+    setIndexToCompare(newValue);
   };
 
   return (
     <div className="App">
-      <Box sx={{ bgcolor: "#F4EBFF" }}>
+      <Box sx={{ bgcolor: "#D9ECFF" }}>
         <Container sx={{ py: 12 }}>
           <Stack direction="row" spacing={2}>
             <Autocomplete
@@ -47,52 +50,24 @@ function App() {
               fullWidth
               getOptionLabel={(option) => option.label}
               options={indices}
-              onChange={(e, newValue) => {
-                console.log(newValue);
-              }}
+              value={indexToCompare}
+              onChange={handleIndexChange}
               renderInput={(params) => (
                 <TextField {...params} label="Index to compare" />
               )}
             ></Autocomplete>
-            <Button variant="outlined">Chart</Button>
           </Stack>
         </Container>
       </Box>
 
-      <Container sx={{ mt: 3 }}>
-        <Box sx={{ mb: 7 }}>
-          <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
-            Charts
-          </Typography>
-          <Box sx={{ height: "320px" }}>
-            <Charts stocks={selectedStocks} />
-          </Box>
-        </Box>
-        <Box sx={{ mb: 7 }}>
-          <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
-            Key Statistics
-          </Typography>
-          <Table />
-        </Box>
-        <Box sx={{ mb: 7 }}>
-          <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
-            Perfomance
-          </Typography>
-          <Table />
-        </Box>
-        <Box sx={{ mb: 7 }}>
-          <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
-            Profitability
-          </Typography>
-          <Table />
-        </Box>
-        <Box sx={{ mb: 7 }}>
-          <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
-            Analysts recommendation
-          </Typography>
-          <Table />
-        </Box>
-      </Container>
+      {selectedStocks.length || indexToCompare ? (
+        <Comparison
+          selectedStocks={selectedStocks}
+          indexToCompare={indexToCompare}
+        />
+      ) : (
+        <EmptyScreen />
+      )}
     </div>
   );
 }
@@ -102,6 +77,7 @@ const stocks = [
   { label: "NVDA", id: 2 },
   { label: "MSFT", id: 3 },
 ];
+
 const indices = [
   { label: "S&P 500 Index" },
   { label: "S&P 100 Index" },

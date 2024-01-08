@@ -6,30 +6,54 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import { useState, useMemo } from "react";
+import Badge from "./Badge";
+import { useState, useMemo, useEffect } from "react";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, eps, dpt, netincome, netmargins, roe, roa) {
+  return { name, eps, dpt, netincome, netmargins, roe, roa };
 }
 
-const rows = [
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Donut", 452, 25.0, 51, 4.9),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  // Add more rows as needed
-];
-
 const headCells = [
-  { id: "name", label: "Dessert (100g serving)" },
-  { id: "calories", label: "Calories" },
-  { id: "fat", label: "Fat (g)" },
-  { id: "carbs", label: "Carbs (g)" },
-  { id: "protein", label: "Protein (g)" },
+  { id: "name", label: "Name" },
+  { id: "eps", label: "EPS" },
+  { id: "dpt", label: "Dividend Payout Ratio" },
+  { id: "netincome", label: "Net Income" },
+  { id: "netmargins", label: "Net Margins" },
+  { id: "roe", label: "ROE" },
+  { id: "roa", label: "ROA" },
 ];
 
-const EnhancedTable = ({ stocks, index }) => {
+function getRandomValue() {
+  return Math.trunc(Math.random() * 100);
+}
+
+function getRandomValueForPrice() {
+  const randomNumber = Math.random();
+  return randomNumber < 0.5
+    ? "+" + Math.trunc(Math.random() * 100) / 100
+    : Math.trunc(-Math.random() * 100) / 100;
+}
+
+const KeyStatTable = ({ stocks, index }) => {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("calories");
+
+  let allItemsToCompare = [...stocks];
+  if (index) {
+    allItemsToCompare = [...stocks, index];
+  }
+
+  let rows = allItemsToCompare.map((item) => {
+    return createData(
+      item.label,
+      getRandomValue(),
+      getRandomValue(),
+      getRandomValue(),
+      getRandomValue(),
+      getRandomValue(),
+      getRandomValue()
+    );
+  });
 
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -46,9 +70,7 @@ const EnhancedTable = ({ stocks, index }) => {
       }
     };
     return rows.sort(comparator);
-  }, [order, orderBy]);
-
-  console.log(sortedRows);
+  }, [order, orderBy, stocks, index]);
 
   return (
     <TableContainer component={Paper}>
@@ -72,10 +94,13 @@ const EnhancedTable = ({ stocks, index }) => {
           {sortedRows.map((row, index) => (
             <TableRow key={index}>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.calories}</TableCell>
-              <TableCell>{row.fat}</TableCell>
-              <TableCell>{row.carbs}</TableCell>
-              <TableCell>{row.protein}</TableCell>
+
+              <TableCell>{row.eps}</TableCell>
+              <TableCell>{row.dpt}</TableCell>
+              <TableCell>{row.netincome}</TableCell>
+              <TableCell>{row.netmargins}</TableCell>
+              <TableCell>{row.roe}</TableCell>
+              <TableCell>{row.roa}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -84,4 +109,4 @@ const EnhancedTable = ({ stocks, index }) => {
   );
 };
 
-export default EnhancedTable;
+export default KeyStatTable;
