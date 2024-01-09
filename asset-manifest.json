@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/financial-tool/static/css/main.7f787eb5.css",
-    "main.js": "/financial-tool/static/js/main.038cb100.js",
+    "main.js": "/financial-tool/static/js/main.3367f6f6.js",
     "static/media/roboto-latin-400-normal.woff2": "/financial-tool/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
     "static/media/roboto-cyrillic-ext-400-normal.woff2": "/financial-tool/static/media/roboto-cyrillic-ext-400-normal.804378952da8a10faae2.woff2",
     "static/media/roboto-latin-400-normal.woff": "/financial-tool/static/media/roboto-latin-400-normal.3f2b9a42f643e62a49b7.woff",
@@ -18,10 +18,10 @@
     "static/media/roboto-greek-ext-400-normal.woff": "/financial-tool/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "index.html": "/financial-tool/index.html",
     "main.7f787eb5.css.map": "/financial-tool/static/css/main.7f787eb5.css.map",
-    "main.038cb100.js.map": "/financial-tool/static/js/main.038cb100.js.map"
+    "main.3367f6f6.js.map": "/financial-tool/static/js/main.3367f6f6.js.map"
   },
   "entrypoints": [
     "static/css/main.7f787eb5.css",
-    "static/js/main.038cb100.js"
+    "static/js/main.3367f6f6.js"
   ]
 }
