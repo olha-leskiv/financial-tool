@@ -1,5 +1,5 @@
 function EmptyScreen() {
-  return "empty";
+  return;
 }
 
 export default EmptyScreen;

@@ -37,8 +37,9 @@ const needle = (value, data, cx, cy, iR, oR, color) => {
   const yp = y0 + length * sin;
 
   return [
-    <circle cx={x0} cy={y0} r={r} fill={color} stroke="none" />,
+    <circle cx={x0} cy={y0} r={r} fill={color} stroke="none" key={value} />,
     <path
+      key={value + 1}
       d={`M${xba} ${yba}L${xbb} ${ybb} L${xp} ${yp} L${xba} ${yba}`}
       stroke="#none"
       fill={color}

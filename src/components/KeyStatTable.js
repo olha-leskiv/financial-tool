@@ -81,7 +81,7 @@ const KeyStatTable = ({ stocks, index }) => {
       }
     };
     return rows.sort(comparator);
-  }, [order, orderBy, stocks, index]);
+  }, [order, orderBy]);
 
   return (
     <TableContainer component={Paper}>

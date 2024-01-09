@@ -17,41 +17,57 @@ import {
   ButtonGroup,
   Button,
   Typography,
+  ToggleButtonGroup,
+  ToggleButton,
 } from "@mui/material";
 
 function Comparison({ selectedStocks, indexToCompare }) {
-  console.log(selectedStocks);
-
   return (
-    <Container sx={{ mt: 3 }}>
+    // <Box sx={{ p: 4 }}>
+    //   <ToggleButtonGroup orientation="vertical">
+    //     <ToggleButton value="charts">Charts</ToggleButton>
+    //     <ToggleButton value="ks">Key Statistics</ToggleButton>
+    //     <ToggleButton value="perfomance">Perfomance</ToggleButton>
+    //     <ToggleButton value="profitability">Profitability</ToggleButton>
+    //     <ToggleButton value="analysts">Analysts recommendation</ToggleButton>
+    //     <ToggleButton value="news">News</ToggleButton>
+    //   </ToggleButtonGroup>
+    // </Box>
+    <Container sx={{ mt: 3, pt: 4, pb: 4 }}>
       <Box sx={{ mb: 7 }}>
-        <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
+        <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
           Charts
         </Typography>
-        <Box sx={{ height: "320px" }}>
-          <Charts stocks={selectedStocks} index={indexToCompare} />
-        </Box>
+        <Paper sx={{ pb: 8 }}>
+          <Box sx={{ p: 4, height: "400px" }}>
+            <Charts stocks={selectedStocks} index={indexToCompare} />
+          </Box>
+        </Paper>
       </Box>
-      <Box sx={{ mb: 7 }}>
-        <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
+
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
           Key Statistics
         </Typography>
         <KeyStatTable stocks={selectedStocks} index={indexToCompare} />
       </Box>
-      <Box sx={{ mb: 7 }}>
-        <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
+
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
           Perfomance
         </Typography>
         <PerfomanceTable stocks={selectedStocks} index={indexToCompare} />
       </Box>
-      <Box sx={{ mb: 7 }}>
-        <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
+
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
           Profitability
         </Typography>
         <ProfitabilityTable stocks={selectedStocks} index={indexToCompare} />
       </Box>
-      <Box sx={{ mb: 7 }}>
-        <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
+
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
           Analysts recommendation
         </Typography>
         <AnalystTable stocks={selectedStocks} index={indexToCompare} />

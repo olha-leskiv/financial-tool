@@ -22,26 +22,19 @@ import {
 
 import {
   Box,
-  OutlinedInput,
-  Paper,
-  Grid,
-  Container,
   Stack,
-  Autocomplete,
-  TextField,
-  ButtonGroup,
-  Button,
-  Typography,
   Select,
   MenuItem,
   InputLabel,
   FormControl,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 
 function Charts({ stocks, index }) {
   const [frequency, setFrequency] = useState({
     label: "day",
-    number: 700,
+    number: 24,
   });
   const [chartType, setChartType] = useState("linechart");
   const [metric, setMetric] = useState(comparisonMetric[0]);
@@ -68,7 +61,7 @@ function Charts({ stocks, index }) {
     for (let i = 0; i < allItemsToCompare.length; i++) {
       stocksInfo = {
         ...stocksInfo,
-        [allItemsToCompare[i].label]: getRandomValue(200),
+        [allItemsToCompare[i].label]: getRandomValue(i),
       };
     }
     return stocksInfo;
@@ -84,7 +77,7 @@ function Charts({ stocks, index }) {
           >
             <YAxis />
             <XAxis dataKey="date" />
-            <CartesianGrid strokeDasharray="5 5" />
+            <CartesianGrid strokeDasharray="1 3" />
             <Legend />
             <Tooltip />
             {allItemsToCompare.map((item, index) => {
@@ -95,6 +88,7 @@ function Charts({ stocks, index }) {
                   stroke={getChartColor(index)}
                   key={index}
                   dot={false}
+                  fillOpacity={0.05}
                 />
               );
             })}
@@ -106,7 +100,7 @@ function Charts({ stocks, index }) {
           <LineChart data={renderedData}>
             <YAxis />
             <XAxis dataKey="date" />
-            <CartesianGrid strokeDasharray="5 5" />
+            <CartesianGrid strokeDasharray="1 3" />
             <Legend />
             <Tooltip />
             {allItemsToCompare.map((item, index) => {
@@ -128,7 +122,7 @@ function Charts({ stocks, index }) {
           <BarChart data={renderedData}>
             <YAxis />
             <XAxis dataKey="date" />
-            <CartesianGrid strokeDasharray="5 5" />
+            <CartesianGrid strokeDasharray="1 3" />
             <Legend />
             <Tooltip />
             {allItemsToCompare.map((item, index) => {
@@ -149,7 +143,7 @@ function Charts({ stocks, index }) {
           <LineChart data={renderedData}>
             <YAxis />
             <XAxis dataKey="date" />
-            <CartesianGrid strokeDasharray="5 5" />
+            <CartesianGrid strokeDasharray="1 3" />
             <Legend />
             <Tooltip />
             {allItemsToCompare.map((item, index) => {
@@ -180,7 +174,7 @@ function Charts({ stocks, index }) {
           justifyContent: "space-between",
         }}
       >
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 120, width: 220 }} size="small">
           <InputLabel id="demo-simple-select-standard-label">Metric</InputLabel>
           <Select
             labelId="demo-simple-select-standard-label"
@@ -198,115 +192,103 @@ function Charts({ stocks, index }) {
             })}
           </Select>
         </FormControl>
-        <ButtonGroup
-          variant="outlined"
-          aria-label="outlined button group"
-          size="small"
-        >
-          <Button
-            onClick={() =>
-              setFrequency({
+        <Stack direction="row" spacing={2}>
+          <ToggleButtonGroup
+            variant="outlined"
+            aria-label="outlined button group"
+            onChange={(e, newValue) => setFrequency(newValue)}
+            exclusive
+            value={frequency.label}
+            size="small"
+          >
+            <ToggleButton
+              value={{
                 label: "day",
                 number: 24,
-              })
-            }
-          >
-            1D
-          </Button>
-          <Button
-            onClick={() =>
-              setFrequency({
-                label: "5days",
-                number: 5,
-              })
-            }
-          >
-            5D
-          </Button>
-          <Button
-            onClick={() =>
-              setFrequency({
+              }}
+            >
+              1D
+            </ToggleButton>
+            <ToggleButton value={{ label: "5days", number: 5 }}>
+              5D
+            </ToggleButton>
+            <ToggleButton
+              value={{
                 label: "1M",
                 number: 30,
                 type: "days",
-              })
-            }
-          >
-            1M
-          </Button>
-          <Button
-            onClick={() =>
-              setFrequency({
+              }}
+            >
+              1M
+            </ToggleButton>
+            <ToggleButton
+              value={{
                 label: "6M",
                 number: 30 * 6,
                 type: "days",
-              })
-            }
-          >
-            6M
-          </Button>
-          <Button
-            onClick={() =>
-              setFrequency({
+              }}
+            >
+              6M
+            </ToggleButton>
+            <ToggleButton
+              value={{
                 label: "9M",
                 number: 30 * 9,
                 type: "days",
-              })
-            }
-          >
-            9M
-          </Button>
-          <Button
-            onClick={() =>
-              setFrequency({
+              }}
+            >
+              9M
+            </ToggleButton>
+            <ToggleButton
+              value={{
                 label: "1Y",
                 number: 12,
                 type: "months",
-              })
-            }
-          >
-            1Y
-          </Button>
-          <Button
-            onClick={() =>
-              setFrequency({
+              }}
+            >
+              1Y
+            </ToggleButton>
+            <ToggleButton
+              value={{
                 label: "2Y",
                 number: 12 * 2,
                 type: "months",
-              })
-            }
-          >
-            2Y
-          </Button>
-          <Button
-            onClick={() =>
-              setFrequency({
+              }}
+            >
+              2Y
+            </ToggleButton>
+            <ToggleButton
+              value={{
                 label: "5Y",
                 number: 12 * 5,
                 type: "months",
-              })
-            }
+              }}
+            >
+              5Y
+            </ToggleButton>
+          </ToggleButtonGroup>
+          <ToggleButtonGroup
+            variant="outlined"
+            size="small"
+            exclusive
+            onChange={(e, newValue) => setChartType(newValue)}
+            value={chartType}
           >
-            5Y
-          </Button>
-        </ButtonGroup>
-        <ButtonGroup
-          variant="outlined"
-          aria-label="outlined button group"
-          size="small"
-        >
-          <Button onClick={() => setChartType("barchart")} title="Barchart">
-            <BarChartIcon />
-          </Button>
-          <Button onClick={() => setChartType("linechart")}>
-            <ShowChartIcon />
-          </Button>
-          <Button onClick={() => setChartType("areachart")}>
-            <LandscapeIcon />
-          </Button>
-        </ButtonGroup>
+            <ToggleButton aria-label="Barchart" value="barchart">
+              <BarChartIcon />
+            </ToggleButton>
+            <ToggleButton aria-label="Linechart" value="linechart">
+              <ShowChartIcon />
+            </ToggleButton>
+            <ToggleButton aria-label="Areachart" value="areachart">
+              <LandscapeIcon />
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Stack>
       </Box>
-      <ResponsiveContainer height="100%" width="100%">
+      <ResponsiveContainer
+        style={{ height: "200px", width: "100%", fontFamily: "monospace" }}
+      >
         {content(chartType)}
       </ResponsiveContainer>
     </>
