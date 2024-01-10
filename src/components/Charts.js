@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "@fontsource/roboto";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
@@ -299,22 +299,22 @@ export default Charts;
 
 function getChartColor(index) {
   if (index === 0) {
-    return "#FDB022";
+    return "#0F67FE";
   }
   if (index === 1) {
-    return "#F04438";
+    return "#090E1D";
   }
   if (index === 2) {
-    return "#12B76A";
+    return "#FA4D5E";
   }
   if (index === 3) {
-    return "#9E77ED";
+    return "#08B4BD";
   }
   if (index === 4) {
-    return "##667085";
+    return "#667085";
   }
   if (index === 5) {
-    return "#194185";
+    return "#8A3FFC";
   }
 }
 

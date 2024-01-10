@@ -1,25 +1,9 @@
 import Charts from "../components/Charts.js";
-import Table from "../components/Table.js";
 import KeyStatTable from "./KeyStatTable.js";
 import PerfomanceTable from "./PerfomanceTable.js";
 import AnalystTable from "./AnalystTable.js";
 import ProfitabilityTable from "./ProfitabilityTable.js";
-import { useState } from "react";
-import {
-  Box,
-  OutlinedInput,
-  Paper,
-  Grid,
-  Container,
-  Stack,
-  Autocomplete,
-  TextField,
-  ButtonGroup,
-  Button,
-  Typography,
-  ToggleButtonGroup,
-  ToggleButton,
-} from "@mui/material";
+import { Box, Paper, Container, Typography } from "@mui/material";
 
 function Comparison({ selectedStocks, indexToCompare }) {
   return (

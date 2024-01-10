@@ -3,16 +3,11 @@ import Comparison from "./components/Comparison";
 import EmptyScreen from "./components/EmptyScreen";
 import {
   Box,
-  OutlinedInput,
   Paper,
-  Grid,
   Container,
   Stack,
   Autocomplete,
   TextField,
-  ButtonGroup,
-  Button,
-  Typography,
 } from "@mui/material";
 
 function App() {
@@ -20,7 +15,9 @@ function App() {
   const [indexToCompare, setIndexToCompare] = useState(null);
 
   const handleStockInput = (e, newValue) => {
-    setSelectedStocks(newValue);
+    if (newValue.length <= 5) {
+      setSelectedStocks(newValue);
+    }
   };
 
   const handleIndexChange = (e, newValue) => {
@@ -28,34 +25,38 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ backgroundColor: "#F2F9FF" }}>
-      <Box sx={{ bgcolor: "#D9ECFF" }}>
+    <div className="App" style={{ backgroundColor: "#D0E4FF" }}>
+      <Box sx={{ bgcolor: "#0F67FE" }}>
         <Container sx={{ py: 12 }}>
-          <Stack direction="row" spacing={2}>
-            <Autocomplete
-              multiple
-              autoFocus
-              fullWidth
-              getOptionLabel={(option) => option.label}
-              value={selectedStocks}
-              onChange={handleStockInput}
-              options={stocks}
-              renderInput={(params) => (
-                <TextField {...params} label="Add stocks" />
-              )}
-            ></Autocomplete>
-            <Autocomplete
-              autoFocus
-              fullWidth
-              getOptionLabel={(option) => option.label}
-              options={indices}
-              value={indexToCompare}
-              onChange={handleIndexChange}
-              renderInput={(params) => (
-                <TextField {...params} label="Index to compare" />
-              )}
-            ></Autocomplete>
-          </Stack>
+          <Paper sx={{ p: 4 }}>
+            <Stack direction="row" spacing={2}>
+              <Autocomplete
+                blurOnSelect
+                multiple
+                autoFocus
+                fullWidth
+                getOptionLabel={(option) => option.label}
+                value={selectedStocks}
+                onChange={handleStockInput}
+                options={stocks}
+                renderInput={(params) => (
+                  <TextField {...params} label="Add stocks (up to 5 items)" />
+                )}
+              ></Autocomplete>
+              <Autocomplete
+                fullWidth
+                sx={{ maxWidth: "260px" }}
+                autoFocus
+                getOptionLabel={(option) => option.label}
+                options={indices}
+                value={indexToCompare}
+                onChange={handleIndexChange}
+                renderInput={(params) => (
+                  <TextField {...params} label="Index to compare" />
+                )}
+              ></Autocomplete>
+            </Stack>
+          </Paper>
         </Container>
       </Box>
 
@@ -70,6 +71,8 @@ function App() {
     </div>
   );
 }
+
+export default App;
 
 const stocks = [
   { label: "META", id: 1 },
@@ -98,6 +101,7 @@ const stocks = [
   { label: "DOCU", id: 24 },
   { label: "UBER", id: 25 },
 ];
+
 const indices = [
   { label: "S&P 500 Index" },
   { label: "S&P 100 Index" },
@@ -108,5 +112,3 @@ const indices = [
   { label: "NYSE Composite" },
   { label: "AMEX Composite" },
 ];
-
-export default App;

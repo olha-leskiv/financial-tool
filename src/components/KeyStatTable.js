@@ -7,7 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Badge from "./Badge";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 
 function createData(
   name,
@@ -81,7 +81,7 @@ const KeyStatTable = ({ stocks, index }) => {
       }
     };
     return rows.sort(comparator);
-  }, [order, orderBy]);
+  }, [order, orderBy, allItemsToCompare]);
 
   return (
     <TableContainer component={Paper}>

@@ -45,7 +45,6 @@ const productSales = [
   },
 ];
 
-// const rest = restClient("SYKjPVarYlELnlMlImBdPPb5O1bOpjVK");
 const API_KEY = "SYKjPVarYlELnlMlImBdPPb5O1bOpjVK";
 
 const rest = restClient(API_KEY);

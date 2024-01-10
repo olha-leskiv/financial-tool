@@ -6,8 +6,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import Badge from "./Badge";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 
 function createData(name, eps, dpt, netincome, netmargins, roe, roa) {
   return { name, eps, dpt, netincome, netmargins, roe, roa };
@@ -27,12 +26,12 @@ function getRandomValue() {
   return Math.trunc(Math.random() * 100);
 }
 
-function getRandomValueForPrice() {
-  const randomNumber = Math.random();
-  return randomNumber < 0.5
-    ? "+" + Math.trunc(Math.random() * 100) / 100
-    : Math.trunc(-Math.random() * 100) / 100;
-}
+// function getRandomValueForPrice() {
+//   const randomNumber = Math.random();
+//   return randomNumber < 0.5
+//     ? "+" + Math.trunc(Math.random() * 100) / 100
+//     : Math.trunc(-Math.random() * 100) / 100;
+// }
 
 const KeyStatTable = ({ stocks, index }) => {
   const [order, setOrder] = useState("asc");

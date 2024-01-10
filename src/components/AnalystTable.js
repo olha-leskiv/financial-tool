@@ -8,7 +8,7 @@ import Paper from "@mui/material/Paper";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import AnalystRatePieChart from "./AnalystRatePieChart";
 import { Typography } from "@mui/material";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 
 function createData(name, consensus, crating, news, cprice) {
   return { name, consensus, crating, news, cprice };
@@ -110,49 +110,49 @@ function formateBuySellCode(code) {
   switch (code) {
     case 1:
       return (
-        <Typography variant="body1" sx={{ color: "#f44336" }}>
+        <Typography variant="body1" sx={{ color: "#FA6C4D" }}>
           Strong Sell
         </Typography>
       );
     case 2:
       return (
-        <Typography variant="body1" sx={{ color: "#ff9800" }}>
+        <Typography variant="body1" sx={{ color: "#FA4D4D" }}>
           Strong Sell
         </Typography>
       );
     case 3:
       return (
-        <Typography variant="body1" sx={{ color: "#E1CA00" }}>
+        <Typography variant="body1" sx={{ color: "#FA4D5E" }}>
           Sell
         </Typography>
       );
     case 4:
       return (
-        <Typography variant="body1" sx={{ color: "#4caf50" }}>
+        <Typography variant="body1" sx={{ color: "#8A3FFC " }}>
           Hold
         </Typography>
       );
     case 5:
       return (
-        <Typography variant="body1" sx={{ color: "#009688" }}>
+        <Typography variant="body1" sx={{ color: "#0F67FE " }}>
           Moderate Buy
         </Typography>
       );
     case 6:
       return (
-        <Typography variant="body1" sx={{ color: "#2196f3" }}>
+        <Typography variant="body1" sx={{ color: "#2E92CF" }}>
           Buy
         </Typography>
       );
     case 7:
       return (
-        <Typography variant="body1" sx={{ color: "#3f51b5" }}>
+        <Typography variant="body1" sx={{ color: "#08BD92" }}>
           Strong Buy
         </Typography>
       );
     default:
       return (
-        <Typography variant="body1" sx={{ color: "#4caf50" }}>
+        <Typography variant="body1" sx={{ color: "#8A3FFC" }}>
           Hold
         </Typography>
       );
